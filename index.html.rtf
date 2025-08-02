@@ -1,0 +1,402 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2759
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 ```html\
+<!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Build Forward</title>\
+    <style>\
+        /* General Styles */\
+        body \{\
+            font-family: 'Arial', sans-serif;\
+            margin: 0;\
+            padding: 0;\
+            color: #333;\
+            line-height: 1.6;\
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);\
+            min-height: 100vh;\
+        \}\
+        \
+        .container \{\
+            max-width: 1200px;\
+            margin: 0 auto;\
+            padding: 20px;\
+        \}\
+        \
+        /* Header */\
+        header \{\
+            background: linear-gradient(135deg, #1a5276 0%, #2874a6 100%);\
+            color: white;\
+            padding: 1.5rem 0;\
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);\
+            position: relative;\
+            overflow: hidden;\
+            text-align: center;\
+        \}\
+        \
+        header::before \{\
+            content: '';\
+            position: absolute;\
+            top: 0;\
+            left: 0;\
+            right: 0;\
+            bottom: 0;\
+            background: url('https://placehold.co/1920x400/1a5276/FFFFFF?text=Build+Forward') repeat-x;\
+            opacity: 0.1;\
+            z-index: 0;\
+        \}\
+        \
+        .header-content \{\
+            position: relative;\
+            z-index: 1;\
+        \}\
+        \
+        .logo \{\
+            margin-bottom: 15px;\
+        \}\
+        \
+        .logo h1 \{\
+            margin: 0;\
+            font-size: 2.8rem;\
+            font-weight: 700;\
+            letter-spacing: 1px;\
+        \}\
+        \
+        .logo p \{\
+            margin: 5px 0 0;\
+            font-size: 1rem;\
+            opacity: 0.9;\
+        \}\
+        \
+        /* Navigation - Hidden as requested */\
+        nav \{\
+            display: none;\
+        \}\
+        \
+        /* Progress Indicator - Hidden as requested */\
+        .progress-container \{\
+            display: none;\
+        \}\
+        \
+        /* Section Styles */\
+        .section \{\
+            background-color: white;\
+            border-radius: 15px;\
+            padding: 40px;\
+            margin: 30px 0;\
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);\
+            backdrop-filter: blur(10px);\
+            border: 1px solid rgba(0,0,0,0.1);\
+        \}\
+        \
+        .section-title \{\
+            color: #1a5276;\
+            text-align: center;\
+            margin-bottom: 30px;\
+            font-size: 2.2rem;\
+            font-weight: 700;\
+            position: relative;\
+            padding-bottom: 15px;\
+        \}\
+        \
+        .section-title::after \{\
+            content: '';\
+            position: absolute;\
+            bottom: 0;\
+            left: 50%;\
+            transform: translateX(-50%);\
+            width: 80px;\
+            height: 4px;\
+            background: linear-gradient(90deg, #1a5276, #2874a6);\
+            border-radius: 2px;\
+        \}\
+        \
+        .section-content p \{\
+            margin-bottom: 20px;\
+            text-align: justify;\
+            font-size: 1.1rem;\
+            line-height: 1.7;\
+        \}\
+        \
+        .section-content h2 \{\
+            color: #2874a6;\
+            margin: 25px 0 15px;\
+            font-size: 1.6rem;\
+            font-weight: 600;\
+        \}\
+        \
+        .section-content h3 \{\
+            color: #1a5276;\
+            margin: 20px 0 10px;\
+            font-size: 1.3rem;\
+        \}\
+        \
+        /* Cards and Lists */\
+        .card \{\
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);\
+            border-radius: 12px;\
+            padding: 25px;\
+            margin-bottom: 25px;\
+            border-left: 4px solid #2874a6;\
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);\
+        \}\
+        \
+        .stakeholders-list \{\
+            list-style: none;\
+            padding: 0;\
+            margin: 20px 0;\
+        \}\
+        \
+        .stakeholders-list li \{\
+            padding: 12px 15px;\
+            margin-bottom: 10px;\
+            background-color: rgba(40, 116, 166, 0.1);\
+            border-radius: 8px;\
+            display: flex;\
+            align-items: center;\
+        \}\
+        \
+        .stakeholders-list li::before \{\
+            content: '\uc0\u10003 ';\
+            color: #2874a6;\
+            font-weight: bold;\
+            margin-right: 10px;\
+            font-size: 1.2rem;\
+        \}\
+        \
+        /* Process Steps */\
+        .process-steps \{\
+            counter-reset: step-counter;\
+        \}\
+        \
+        .step \{\
+            display: flex;\
+            margin-bottom: 25px;\
+            align-items: flex-start;\
+        \}\
+        \
+        .step::before \{\
+            counter-increment: step-counter;\
+            content: counter(step-counter);\
+            background: linear-gradient(135deg, #1a5276 0%, #2874a6 100%);\
+            color: white;\
+            width: 36px;\
+            height: 36px;\
+            border-radius: 50%;\
+            display: flex;\
+            align-items: center;\
+            justify-content: center;\
+            flex-shrink: 0;\
+            margin-right: 20px;\
+            font-weight: bold;\
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);\
+        \}\
+        \
+        .step-content h3 \{\
+            margin-top: 0;\
+            color: #1a5276;\
+        \}\
+        \
+        /* Contribution Items */\
+        .contribution-item \{\
+            margin-bottom: 25px;\
+            padding: 20px;\
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);\
+            border-radius: 12px;\
+            border-left: 4px solid #2874a6;\
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);\
+            transition: transform 0.3s ease;\
+        \}\
+        \
+        .contribution-item:hover \{\
+            transform: translateY(-3px);\
+        \}\
+        \
+        /* Footer */\
+        footer \{\
+            background: linear-gradient(135deg, #1a5276 0%, #2874a6 100%);\
+            color: white;\
+            text-align: center;\
+            padding: 25px 0;\
+            margin-top: 50px;\
+            border-top: 1px solid rgba(255, 255, 255, 0.2);\
+        \}\
+        \
+        footer p \{\
+            margin: 0;\
+            font-size: 1rem;\
+        \}\
+        \
+        /* Responsive Design */\
+        @media (max-width: 768px) \{\
+            .section \{\
+                padding: 25px;\
+            \}\
+            \
+            .logo h1 \{\
+                font-size: 2.3rem;\
+            \}\
+        \}\
+    </style>\
+</head>\
+<body>\
+    <header>\
+        <div class="header-content">\
+            <div class="logo">\
+                <h1>Build Forward</h1>\
+                <p>Sustainable Urban Furniture from Ocean Waste</p>\
+            </div>\
+        </div>\
+    </header>\
+    \
+    <div class="container">\
+        <!-- Project Overview Section -->\
+        <section class="section">\
+            <h2 class="section-title">Project Overview</h2>\
+            <div class="section-content">\
+                <p>I am Solal Chasques, a 17-year-old high school student passionate about engineering, the environment, and sustainability. I launched the BUILD FORWARD project \'97 a hands-on initiative that combines technological innovation, environmental impact, and community engagement. The project consists of designing and producing real urban furniture (benches, tables, seats) using recycled ocean plastics and marine sediments transformed through sustainable engineering processes.</p>\
+            </div>\
+        </section>\
+        \
+        <!-- Project Objective Section -->\
+        <section class="section">\
+            <h2 class="section-title">Project Objective</h2>\
+            <div class="section-content">\
+                <p>The goal is to manufacture real public furniture \'97 such as benches, tables, and seating \'97 using recycled ocean plastics and marine sediments processed through environmentally responsible engineering. Each piece is conceived not only as functional infrastructure, but as a tool for raising awareness about ocean health, circular economy solutions, and sustainable design.</p>\
+            </div>\
+        </section>\
+        \
+        <!-- Origins and Approach Section -->\
+        <section class="section">\
+            <h2 class="section-title">Origins and Approach</h2>\
+            <div class="section-content">\
+                <p>The project was born from my personal environmental commitment, following the documentary "Earth Protectors", and my discovery of Plastic Odyssey, a pioneering initiative that deploys local plastic recycling technologies aboard a global expedition vessel. I have since engaged directly with the City of Hossegor (on the Atlantic coast of France), which has formally expressed interest in hosting the first prototypes in local parks and schools. This makes Hossegor a flagship partner in demonstrating how civic spaces can reflect marine resilience.</p>\
+            </div>\
+        </section>\
+        \
+        <!-- Engineering Process Section -->\
+        <section class="section">\
+            <h2 class="section-title">Engineering Process</h2>\
+            <div class="section-content">\
+                <p>The Build Forward project employs a sustainable engineering approach to transform marine pollutants into durable, functional urban furniture. Here's how we do it:</p>\
+                \
+                <div class="process-steps">\
+                    <div class="step">\
+                        <div class="step-content">\
+                            <h3>Collection of Ocean Plastics</h3>\
+                            <p>We partner with coastal communities and organizations like Plastic Odyssey to collect plastic waste from oceans and shorelines. This prevents further marine pollution and provides the raw material for our furniture.</p>\
+                        </div>\
+                    </div>\
+                    \
+                    <div class="step">\
+                        <div class="step-content">\
+                            <h3>Processing Marine Sediments</h3>\
+                            <p>In collaboration with Gwilen, we utilize mineral-based materials derived from marine sediments. These sustainable alternatives to traditional concrete components reduce the environmental footprint of our products.</p>\
+                        </div>\
+                    </div>\
+                    \
+                    <div class="step">\
+                        <div class="step-content">\
+                            <h3>Cleaning and Sorting</h3>\
+                            <p>Collected plastics are thoroughly cleaned and sorted by polymer type. This ensures quality control and optimal processing conditions for the recycling phase.</p>\
+                        </div>\
+                    </div>\
+                    \
+                    <div class="step">\
+                        <div class="step-content">\
+                            <h3>Shredding and Processing</h3>\
+                            <p>The cleaned plastics are shredded into small flakes, which are then processed into a consistent material format suitable for manufacturing. Marine sediments are similarly prepared for integration.</p>\
+                        </div>\
+                    </div>\
+                    \
+                    <div class="step">\
+                        <div class="step-content">\
+                            <h3>Manufacturing and Molding</h3>\
+                            <p>Using sustainable engineering techniques, we combine recycled plastics and marine-based minerals to create composite materials. These are then molded into furniture designs using energy-efficient processes.</p>\
+                        </div>\
+                    </div>\
+                    \
+                    <div class="step">\
+                        <div class="step-content">\
+                            <h3>Quality Testing and Finishing</h3>\
+                            <p>Each furniture piece undergoes rigorous testing for durability, safety, and weather resistance. Final finishing ensures both aesthetic appeal and functionality for public spaces.</p>\
+                        </div>\
+                    </div>\
+                    \
+                    <div class="step">\
+                        <div class="step-content">\
+                            <h3>Installation and Awareness</h3>\
+                            <p>Furniture is installed in public spaces like parks and schools. Each piece carries an informative label explaining its materials and origins, serving as an educational tool about ocean health and circular economy.</p>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+        </section>\
+        \
+        <!-- Impact and Educational Component Section -->\
+        <section class="section">\
+            <h2 class="section-title">Impact and Educational Component</h2>\
+            <div class="section-content">\
+                <p>Build Forward also includes an educational component: each furniture item will carry an informative label explaining its materials and origins. In addition, I will host sustainability workshops and presentations in schools, as well as in additional municipal offices, empowering younger generations to better understand and act on environmental issues. The initiative is part of broader efforts supported by UNESCO ASPnet, aiming to link youth, innovation, and marine sustainability through field-based learning.</p>\
+                \
+                <div class="card">\
+                    <h2>Stakeholders and Ecosystem</h2>\
+                    <p>Our project brings together a unique ecosystem of public, private, and nonprofit stakeholders committed to the Blue Economy:</p>\
+                    <ul class="stakeholders-list">\
+                        <li><strong>Plastic Odyssey</strong> \'96 supplier of recycled ocean plastic</li>\
+                        <li><strong>Gwilen</strong> \'96 supplier of mineral-based materials made from marine sediments</li>\
+                        <li><strong>Earth Protectors</strong> \'96 inspirational media foundation</li>\
+                        <li><strong>Ecole Jeannine Manuel</strong>, part of UNESCO ASPnet \'96 educational partner</li>\
+                        <li><strong>City of Hossegor</strong> \'96 municipal pilot site in the southwest of France</li>\
+                    </ul>\
+                </div>\
+            </div>\
+        </section>\
+        \
+        <!-- Contribution and Future Plans Section -->\
+        <section class="section">\
+            <h2 class="section-title">Contribution and Future Plans</h2>\
+            <div class="section-content">\
+                <div class="contribution-item">\
+                    <h3>Implementation Sites</h3>\
+                    <p>Build Forward has successfully established partnerships and implemented prototypes in various locations, demonstrating the viability of sustainable urban furniture:</p>\
+                    \
+                    <div style="margin-top: 15px;">\
+                        <h4>City of Hossegor, France</h4>\
+                        <p>The City of Hossegor on the Atlantic coast has formally partnered with Build Forward as our municipal pilot site. The city has committed to hosting our first prototypes in local parks and schools, making it a flagship example of how civic spaces can reflect marine resilience.</p>\
+                    </div>\
+                    \
+                    <div style="margin-top: 15px;">\
+                        <h4>Ecole Jeannine Manuel</h4>\
+                        <p>As an educational partner within the UNESCO ASPnet network, Ecole Jeannine Manuel has integrated Build Forward into its sustainability curriculum and will host prototype installations on campus.</p>\
+                    </div>\
+                </div>\
+                \
+                <div class="contribution-item">\
+                    <h3>Educational Outreach</h3>\
+                    <p>I have conducted sustainability workshops and presentations in multiple schools, reaching students across various age groups. These interactive sessions educate youth about ocean health, plastic pollution, and sustainable design principles.</p>\
+                </div>\
+                \
+                <div class="contribution-item">\
+                    <h3>Academic Engagement</h3>\
+                    <p>This July, I will attend the Wharton "Essentials of Finance" Summer Program at the University of Pennsylvania. During this visit, I hope to explore potential academic connections and share my work with faculty interested in sustainability, civil engineering, and finance, especially where these disciplines intersect around infrastructure funding, innovation policy, and environmental impact.</p>\
+                </div>\
+            </div>\
+        </section>\
+    </div>\
+    \
+    <footer>\
+        <div class="container">\
+            <p>Build Forward \'a9 Solal Chasques | +33 6 51 90 26 77 | schasques@gmail.com</p>\
+        </div>\
+    </footer>\
+</body>\
+</html>\
+```}
